@@ -70,6 +70,7 @@ module.exports = {
         minChunkSize: 10_000,
       },
     ]);
+    config.devtool('source-map');
   },
   // 添加插件的配置
   pluginOptions: {

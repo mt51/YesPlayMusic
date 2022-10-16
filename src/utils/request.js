@@ -4,15 +4,7 @@ import axios from 'axios';
 
 let baseURL = '';
 // Web 和 Electron 跑在不同端口避免同时启动时冲突
-if (process.env.IS_ELECTRON) {
-  if (process.env.NODE_ENV === 'production') {
-    baseURL = process.env.VUE_APP_ELECTRON_API_URL;
-  } else {
-    baseURL = process.env.VUE_APP_ELECTRON_API_URL_DEV;
-  }
-} else {
-  baseURL = process.env.VUE_APP_NETEASE_API_URL;
-}
+baseURL = '/api';
 
 const service = axios.create({
   baseURL,
@@ -20,7 +12,11 @@ const service = axios.create({
   timeout: 15000,
 });
 
+console.log(baseURL);
+
 service.interceptors.request.use(function (config) {
+  // eslint-disable-next-line no-debugger
+  debugger;
   if (!config.params) config.params = {};
   if (baseURL.length) {
     if (baseURL[0] !== '/' && !process.env.IS_ELECTRON) {
@@ -48,13 +44,18 @@ service.interceptors.request.use(function (config) {
 
 service.interceptors.response.use(
   response => {
+    // eslint-disable-next-line no-debugger
+    debugger;
     const res = response.data;
     return res;
   },
   async error => {
     /** @type {import('axios').AxiosResponse | null} */
-    const response = error.response;
+    const response = error.response || {};
     const data = response.data;
+
+    // eslint-disable-next-line no-debugger
+    debugger;
 
     if (
       response &&
@@ -73,6 +74,10 @@ service.interceptors.response.use(
       } else {
         router.push({ name: 'login' });
       }
+    } else {
+      return {
+        data: [],
+      };
     }
   }
 );
