@@ -30,7 +30,12 @@
 export default {
   name: 'CoverVideo',
   props: {
-    mvs: Array,
+    mvs: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
     subtitle: {
       type: String,
       default: 'artist',

@@ -95,6 +95,7 @@ export default {
   components: { ArtistsInLine, ExplicitSymbol },
 
   props: {
+    // eslint-disable-next-line vue/require-default-prop
     trackProp: Object,
     highlightPlayingTrack: {
       type: Boolean,

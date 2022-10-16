@@ -22,7 +22,10 @@ export default {
   name: 'Modal',
   props: {
     show: Boolean,
-    close: Function,
+    close: {
+      type: Function,
+      default: null,
+    },
     title: {
       type: String,
       default: 'Title',
@@ -55,7 +58,7 @@ export default {
   methods: {
     clickOutside() {
       if (this.clickOutsideHide) {
-        this.close();
+        this.close?.();
       }
     },
   },

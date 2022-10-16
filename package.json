@@ -12,7 +12,6 @@
     "netease_api:run": "npx NeteaseCloudMusicApi",
     "tauri": "tauri"
   },
-  "main": "background.js",
   "dependencies": {
     "@unblockneteasemusic/rust-napi": "^0.3.0-pre.1",
     "NeteaseCloudMusicApi": "^4.5.2",
@@ -24,7 +23,6 @@
     "crypto-js": "^4.0.0",
     "dayjs": "^1.8.36",
     "dexie": "^3.0.3",
-    "discord-rich-presence": "^0.0.8",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
     "express-http-proxy": "^1.6.2",
@@ -95,7 +93,9 @@
     "globals": {
       "ipcRenderer": "off"
     },
-    "rules": {}
+    "rules": {
+      "vue/no-v-html": 0
+    }
   },
   "browserslist": [
     "> 1%",
