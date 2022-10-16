@@ -181,6 +181,7 @@
 </template>
 
 <script>
+import { listen } from '@tauri-apps/api/event';
 import { mapState, mapMutations, mapActions } from 'vuex';
 import '@/assets/css/slider.css';
 
@@ -215,6 +216,15 @@ export default {
         ? '音源来自酷我音乐'
         : '';
     },
+  },
+  async mounted() {
+    this.unlisten = await listen('play', () => {
+      alert('play');
+      this.playOrPause();
+    });
+  },
+  beforeDestroy() {
+    this.unlisten && this.unlisten();
   },
   methods: {
     ...mapMutations(['toggleLyrics']),
